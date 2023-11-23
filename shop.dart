@@ -56,6 +56,7 @@ class _ShowItemsState extends State<ShowItems> {
                                   Checkbox(
                                     value: selectedItems[index],
                                     onChanged: (value) {
+                                      
                                       setState(() {
                                         selectedItems[index] = value!;
                                       });
