@@ -16,56 +16,44 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.cyan,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(5.0),
         child: Center(
           child: Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ElevatedButton(
+                  _buildElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => const ShowItems()),
                       );
                     },
-                    child: Column(
-                      children: [
-                        const Icon(Icons.shopping_cart, size: 50,),
-                        const SizedBox(height: 8.0),
-                        const Text("Shop Now"),
-                      ],
-                    ),
+                    icon: Icons.shopping_cart,
+                    label: "Shop Now",
+                    color: Colors.orange,
                   ),
                   const SizedBox(width: 60),
-                  ElevatedButton(
+                  _buildElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => const HomePage(title: 'Zizo Tech')),
                       );
                     },
-                    child: Column(
-                      children: [
-                        const Icon(Icons.home, size: 50),
-                        const SizedBox(height: 8.0),
-                        const Text("Home"),
-                      ],
-                    ),
+                    icon: Icons.home,
+                    label: "Home",
+                    color: Colors.blue,
                   ),
                   const SizedBox(width: 60),
-                  ElevatedButton(
+                  _buildElevatedButton(
                     onPressed: (){
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => const Contact()),
                       );
                     },
-                    child: Column(
-                      children: [
-                        const Icon(Icons.contacts, size: 50,),
-                        const SizedBox(height: 8.0),
-                        const Text("Contact us"),
-                      ],
-                    ),
+                    icon: Icons.contacts,
+                    label: "Contact us",
+                    color: Colors.purple,
                   ),
                 ],
               ),
@@ -83,13 +71,35 @@ class HomePage extends StatelessWidget {
               Container(
                 width: 150,
                 height: 150,
-                child: Image(
-                  image: AssetImage('images/z.jpg'),
+                child: CircleAvatar(
+                  backgroundImage: const AssetImage('images/z.jpg'),
+                  radius: 50,
                 ),
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildElevatedButton({
+    required VoidCallback onPressed,
+    required IconData icon,
+    required String label,
+    required Color color,
+  }) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        primary: color,
+      ),
+      onPressed: onPressed,
+      child: Column(
+        children: [
+          Icon(icon, size: 50),
+          const SizedBox(height: 8.0),
+          Text(label),
+        ],
       ),
     );
   }
