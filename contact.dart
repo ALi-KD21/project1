@@ -13,114 +13,147 @@ class Contact extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.cyan,
       ),
-      body: Column(
-        children: [
-          SizedBox(height: 5),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+      body: SingleChildScrollView(
+        child: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('images/rm222-mind-14.jpg'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
             children: [
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const ShowItems()),
-                  );
-                },
-                child: Column(
-                  children: [
-                    const Icon(Icons.shopping_cart, size: 50,),
-                    const SizedBox(height: 8.0),
-                    const Text("Shop Now"),
-                  ],
-                ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => const ShowItems()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.cyan, backgroundColor: Colors.white,
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: const Column(
+                      children: [
+                        Icon(Icons.shopping_cart, size: 50, color: Colors.cyan),
+                        SizedBox(height: 8.0),
+                        Text(
+                          "Shop Now",
+                          style: TextStyle(color: Colors.cyan),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => const HomePage(title: 'Zizo Tech')),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.cyan, backgroundColor: Colors.white,
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: const Column(
+                      children: [
+                        Icon(Icons.home, size: 50, color: Colors.cyan),
+                        SizedBox(height: 8.0),
+                        Text(
+                          "Home",
+                          style: TextStyle(color: Colors.cyan),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => const Contact()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.cyan, backgroundColor: Colors.white,
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: const Column(
+                      children: [
+                        Icon(Icons.contacts, size: 50, color: Colors.cyan),
+                        SizedBox(height: 8.0),
+                        Text(
+                          "Contact us",
+                          style: TextStyle(color: Colors.cyan),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(width: 60), // Add some space between the buttons
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const HomePage(title: 'Zizo Tech')),
-                  );
-                },
-                child: Column(
-                  children: [
-                    const Icon(Icons.home, size: 50),
-                    const SizedBox(height: 8.0),
-                    const Text("Home"),
-                  ],
-                ),
+              const SizedBox(height: 30),
+              const Text(
+                'Meet the Creators',
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
-              const SizedBox(width: 60),
-              ElevatedButton(
-                onPressed: (){
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const Contact()),
-                  );
-                },
-                child: Column(
-                  children: [
-                    const Icon(Icons.contacts, size: 50,),
-                    const SizedBox(height: 8.0),
-                    const Text("Contact us"),
-                  ],
-                ),
-              ),
+              const SizedBox(height: 30),
+              _buildCreatorsInfo("Ali Amareddine", "ali.jpg", '+96181092171', '12131317@students.liu.edu.lb'),
+              const SizedBox(height: 20),
+              _buildCreatorsInfo("Mohammad Zahran", "zizo.jpg", '+96176749822', '12130906@students.liu.edu.lb'),
             ],
           ),
-          SizedBox(height: 100),  // Add space between ElevatedButtons and Images
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(width: 20),
-              Image.asset(
-                "images/ali.jpg",
-                width: 150,
-                height: 150,
-              ),
-              const SizedBox(width: 10),
-              Image.asset(
-                "images/zizo.jpg",
-                width: 150,
-                height: 150,
-              ),
-              SizedBox(width: 20),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(width: 20),
-              const Text(                           'Ali Amareddine            '),
-              const SizedBox(width: 10),
-              const SizedBox(width: 20),
-              const Text('                          Mohammad Zahran'),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(width: 20),
-              const Icon(Icons.phone),
-              const Text('+96181092171                           '),
-              const SizedBox(width: 10),
-              const SizedBox(width: 20),
-              const Text('         '),
-              const Icon(Icons.phone),
-              const Text('+96176749822'),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(width: 20),
-              const Icon(Icons.email),
-              const Text('12131317@students.liu.edu.lb'),
-              const SizedBox(width: 10),
-              const SizedBox(width: 20),
-              const Icon(Icons.email),
-              const Text('12130906@studemts.liu.edu.lb'),
-            ],
-          )
-        ],
+        ),
       ),
+    );
+  }
+
+  Widget _buildCreatorsInfo(String name, String image, String phone, String email) {
+    return Column(
+      children: [
+        CircleAvatar(
+          backgroundImage: AssetImage("images/$image"),
+          radius: 60,
+        ),
+        const SizedBox(height: 10),
+        Text(
+          name,
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 5),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.phone, color: Colors.cyan),
+            const SizedBox(width: 5),
+            Text(
+              phone,
+              style: const TextStyle(color: Colors.cyan),
+            ),
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.email, color: Colors.cyan),
+            const SizedBox(width: 5),
+            Text(
+              email,
+              style: const TextStyle(color: Colors.cyan),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
