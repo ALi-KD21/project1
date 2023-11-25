@@ -15,7 +15,6 @@ class _PaymentPageState extends State<PaymentPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Assuming 10% tax
     double taxRate = 0.1;
     double tax = widget.item.price * taxRate;
     double total = widget.item.price + tax;
@@ -24,9 +23,16 @@ class _PaymentPageState extends State<PaymentPage> {
       appBar: AppBar(
         title: const Text('Payment Information'),
         centerTitle: true,
-        backgroundColor: Colors.cyan,
+        backgroundColor: Colors.purple,
       ),
-      body: Padding(
+      body:Container(
+      decoration: const BoxDecoration(
+      image: DecorationImage(
+      image: AssetImage('images/rm222-mind-20.jpg'),
+      fit: BoxFit.cover,
+      ),
+      ),
+      child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
@@ -34,29 +40,22 @@ class _PaymentPageState extends State<PaymentPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Section: Item Details
               _buildItemDetails(),
-
-              // Section: Payment Information
               _buildPaymentInformation(),
-
-              // Section: Tax and Total
               _buildTaxAndTotal(tax, total),
-
-              // Section: Process Payment Button
               _buildProcessPaymentButton(context),
             ],
           ),
         ),
       ),
+      ),
     );
   }
 
-  // Helper method to build the Item Details section
   Widget _buildItemDetails() {
     return Column(
       children: [
-        Text(
+        const Text(
           'Item Details:',
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
@@ -76,20 +75,16 @@ class _PaymentPageState extends State<PaymentPage> {
     );
   }
 
-  // Helper method to build the Payment Information section
   Widget _buildPaymentInformation() {
     return Column(
       children: [
-        Text(
+        const Text(
           'Payment Information:',
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 10),
-        // Add your payment form fields here
-        // For example, you can use TextFormField, CreditCardForm, etc.
-        // Example:
         TextFormField(
-          decoration: InputDecoration(labelText: 'Card Number'),
+          decoration: const InputDecoration(labelText: 'Card Number'),
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'Please enter card number';
@@ -98,7 +93,7 @@ class _PaymentPageState extends State<PaymentPage> {
           },
         ),
         TextFormField(
-          decoration: InputDecoration(labelText: 'Expiration Date'),
+          decoration: const InputDecoration(labelText: 'Expiration Date'),
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'Please enter expiration date';
@@ -107,7 +102,7 @@ class _PaymentPageState extends State<PaymentPage> {
           },
         ),
         TextFormField(
-          decoration: InputDecoration(labelText: 'CVV'),
+          decoration: const InputDecoration(labelText: 'CVV'),
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'Please enter CVV';
@@ -120,11 +115,10 @@ class _PaymentPageState extends State<PaymentPage> {
     );
   }
 
-  // Helper method to build the Tax and Total section
   Widget _buildTaxAndTotal(double tax, double total) {
     return Column(
       children: [
-        Text(
+        const Text(
           'Tax and Total:',
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
@@ -136,12 +130,13 @@ class _PaymentPageState extends State<PaymentPage> {
     );
   }
 
-  // Helper method to build the Process Payment Button
   Widget _buildProcessPaymentButton(BuildContext context) {
     return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.purple,
+      ),
       onPressed: () {
         if (_formKey.currentState?.validate() ?? false) {
-          // Form is valid, process the payment
           _processPayment(context);
         }
       },
@@ -149,9 +144,7 @@ class _PaymentPageState extends State<PaymentPage> {
     );
   }
 
-  // Helper method to process the payment
   void _processPayment(BuildContext context) {
-    // Implement the logic for processing the payment
     showDialog(
       context: context,
       builder: (context) {
@@ -161,6 +154,7 @@ class _PaymentPageState extends State<PaymentPage> {
           actions: [
             TextButton(
               onPressed: () {
+                Navigator.of(context).pop();
                 Navigator.of(context).pop();
               },
               child: const Text('OK'),
