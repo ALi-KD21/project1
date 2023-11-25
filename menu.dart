@@ -15,92 +15,129 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.cyan,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: Center(
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => const ShowItems()),
-                      );
-                    },
-                    icon: Icons.shopping_cart,
-                    label: "Shop Now",
-                    color: Colors.orange,
-                  ),
-                  const SizedBox(width: 60),
-                  _buildElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => const HomePage(title: 'Zizo Tech')),
-                      );
-                    },
-                    icon: Icons.home,
-                    label: "Home",
-                    color: Colors.blue,
-                  ),
-                  const SizedBox(width: 60),
-                  _buildElevatedButton(
-                    onPressed: (){
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => const Contact()),
-                      );
-                    },
-                    icon: Icons.contacts,
-                    label: "Contact us",
-                    color: Colors.purple,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Align(
-                alignment: Alignment.topCenter,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 20.0),
-                  child: const Text(
-                    'Welcome to Zizo Tech!\n   A step for the future\n',
-                    style: TextStyle(fontSize: 24, color: Colors.cyan),
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/rm222-mind-14.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Center(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => const ShowItems()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.cyan, backgroundColor: Colors.white,
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Column(
+                        children: [
+                          Icon(Icons.shopping_cart, size: 50, color: Colors.cyan),
+                          SizedBox(height: 8.0),
+                          Text(
+                            "Shop Now",
+                            style: TextStyle(color: Colors.cyan),
+                          ),
+                        ],
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => const HomePage(title: 'Zizo Tech')),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.cyan, backgroundColor: Colors.white,
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Column(
+                        children: [
+                          Icon(Icons.home, size: 50, color: Colors.cyan),
+                          SizedBox(height: 8.0),
+                          Text(
+                            "Home",
+                            style: TextStyle(color: Colors.cyan),
+                          ),
+                        ],
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => const Contact()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.cyan, backgroundColor: Colors.white,
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Column(
+                        children: [
+                          Icon(Icons.contacts, size: 50, color: Colors.cyan),
+                          SizedBox(height: 8.0),
+                          Text(
+                            "Contact us",
+                            style: TextStyle(color: Colors.cyan),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                const Align(
+                  alignment: Alignment.topCenter,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 20.0),
+                    child: Text(
+                      'Welcome to Zizo Tech!\n   A step for the future\n',
+                      style: TextStyle(fontSize: 24, color: Colors.cyan),
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                width: 150,
-                height: 150,
-                child: CircleAvatar(
-                  backgroundImage: const AssetImage('images/z.jpg'),
-                  radius: 50,
+                const SizedBox(
+                  width: 150,
+                  height: 150,
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage('images/z.jpg'),
+                    radius: 50,
+                  ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 20),
+                // Additional descriptive text to attract the user
+                const Text(
+                  'Discover the latest tech products and innovations at Zizo Tech. '
+                      'Our selection of gadgets ensures you stay ahead in the digital world. '
+                      'Explore our online store for an unparalleled shopping experience!',
+                  style: TextStyle(fontSize: 20, color: Colors.teal),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Widget _buildElevatedButton({
-    required VoidCallback onPressed,
-    required IconData icon,
-    required String label,
-    required Color color,
-  }) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        primary: color,
-      ),
-      onPressed: onPressed,
-      child: Column(
-        children: [
-          Icon(icon, size: 50),
-          const SizedBox(height: 8.0),
-          Text(label),
-        ],
-      ),
-    );
-  }
 }
