@@ -21,7 +21,7 @@ class _ShowItemsState extends State<ShowItems> {
       appBar: AppBar(
         title: const Text('Shop Items'),
         centerTitle: true,
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.purpleAccent,
         actions: [
           IconButton(
             icon: const Icon(Icons.shopping_cart),
@@ -31,62 +31,88 @@ class _ShowItemsState extends State<ShowItems> {
           ),
         ],
       ),
-      body: Column(
+      body:Container(
+      decoration: const BoxDecoration(
+      image: DecorationImage(
+      image: AssetImage('images/rm222-mind-20.jpg'),
+      fit: BoxFit.cover,
+      ),
+      ),
+      child: Column(
         children: [
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.orange,
-                ),
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => const ShowItems()),
                   );
                 },
-                child: Column(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.cyan, backgroundColor: Colors.white,
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: const Column(
                   children: [
-                    const Icon(Icons.shopping_cart, size: 50),
-                    const SizedBox(height: 8.0),
-                    const Text("Shop Now"),
+                    Icon(Icons.shopping_cart, size: 50, color: Colors.purpleAccent),
+                    SizedBox(height: 8.0),
+                    Text(
+                      "Shop Now",
+                      style: TextStyle(color: Colors.purpleAccent),
+                    ),
                   ],
                 ),
               ),
-              const SizedBox(width: 30),
               ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
-                ),
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => const HomePage(title: 'Zizo Tech')),
                   );
                 },
-                child: Column(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.cyan, backgroundColor: Colors.white,
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: const Column(
                   children: [
-                    const Icon(Icons.home, size: 50),
-                    const SizedBox(height: 8.0),
-                    const Text("Home"),
+                    Icon(Icons.home, size: 50, color: Colors.purpleAccent),
+                    SizedBox(height: 8.0),
+                    Text(
+                      "Home",
+                      style: TextStyle(color: Colors.purpleAccent),
+                    ),
                   ],
                 ),
               ),
-              const SizedBox(width: 30),
               ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.purple,
-                ),
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => const Contact()),
                   );
                 },
-                child: Column(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.cyan, backgroundColor: Colors.white,
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: const Column(
                   children: [
-                    const Icon(Icons.contacts, size: 50),
-                    const SizedBox(height: 8.0),
-                    const Text("Contact us"),
+                    Icon(Icons.contacts, size: 50, color: Colors.purpleAccent),
+                    SizedBox(height: 8.0),
+                    Text(
+                      "Contact us",
+                      style: TextStyle(color: Colors.purpleAccent),
+                    ),
                   ],
                 ),
               ),
@@ -120,23 +146,21 @@ class _ShowItemsState extends State<ShowItems> {
                                 children: [
                                   Text(
                                     items[index].toString(),
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black,
                                     ),
                                   ),
                                   const SizedBox(height: 8),
-
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
-                                          primary: Colors.green,
+                                          backgroundColor: Colors.purple,
                                         ),
                                         onPressed: () {
-                                          // Navigate to the new page when an item is bought
                                           Navigator.of(context).push(
                                             MaterialPageRoute(
                                               builder: (context) =>
@@ -149,14 +173,11 @@ class _ShowItemsState extends State<ShowItems> {
                                       const SizedBox(width: 10),
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
-                                          primary: Colors.blue,
+                                          backgroundColor: Colors.deepPurple,
                                         ),
                                         onPressed: () {
-                                          // Toggle the selected state of the item
                                           setState(() {
                                             selectedItems[index] = !selectedItems[index];
-
-                                            // If the item is selected, add it to the cart
                                             if (selectedItems[index]) {
                                               cartItems.add(items[index]);
                                             } else {
@@ -184,6 +205,7 @@ class _ShowItemsState extends State<ShowItems> {
           ),
         ],
       ),
+      ),
     );
   }
 
@@ -196,9 +218,9 @@ class _ShowItemsState extends State<ShowItems> {
   }
 }
 
+
 class ShoppingCart extends StatelessWidget {
   final List<Item> cartItems;
-
   const ShoppingCart({Key? key, required this.cartItems}) : super(key: key);
 
   @override
@@ -207,20 +229,32 @@ class ShoppingCart extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Shopping Cart'),
         centerTitle: true,
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.deepPurple,
       ),
-      body: ListView.builder(
+      body:Container(
+      decoration: const BoxDecoration(
+      image: DecorationImage(
+      image: AssetImage('images/rm222-mind-20.jpg'),
+      fit: BoxFit.cover,
+      ),
+      ),
+      child: ListView.builder(
         itemCount: cartItems.length,
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(cartItems[index].name),
             subtitle: Text('Price: \$${cartItems[index].price}'),
+            leading: Image.asset(
+              cartItems[index].image,
+              width: 50,
+              height: 50,
+              fit: BoxFit.cover,
+            ),
             trailing: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.green,
+                backgroundColor: Colors.green,
               ),
               onPressed: () {
-                // Navigate to the payment page when the "Buy Now" button is pressed
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => PaymentPage(item: cartItems[index]),
@@ -232,6 +266,8 @@ class ShoppingCart extends StatelessWidget {
           );
         },
       ),
+      ),
     );
   }
 }
+
